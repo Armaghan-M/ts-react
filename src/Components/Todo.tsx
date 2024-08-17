@@ -5,11 +5,11 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 type TodoProps = {
   todo: TodoType;
-  deleteTodo: (id: string) => boolean;
   toggleComplete: (id: string) => boolean;
+  deleteTodo: (id: string) => boolean;
 };
 
-function Todo({ todo, deleteTodo, toggleComplete }: TodoProps) {
+function Todo({ toggleComplete, deleteTodo, todo }: TodoProps) {
   return (
     <div className="Todo">
       <p

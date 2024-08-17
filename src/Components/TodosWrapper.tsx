@@ -13,29 +13,9 @@ function TodosWrapper() {
       {
         id: crypto.randomUUID(),
         title,
-        completed: false,
-      },
-    ]);
-
-    return true;
-  };
-
-  const deleteTodo = (id: string) => {
-    swal({
-      title: "آیا از حذف تودو اطمینان دارید؟",
-      icon: "warning",
-      buttons: ["نه", "آره"],
-    }).then((result) => {
-      if (result) {
-        setTodos(todos.filter((todo) => todo.id !== id));
-
-        swal({
-          title: "تودوی مورد نظر با موفقیت حذف شد",
-          icon: "success",
-        });
+        completed: false
       }
-    });
-
+    ]);
     return true;
   };
 
@@ -45,6 +25,24 @@ function TodosWrapper() {
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
+    return true;
+  };
+
+  const deleteTodo = (id: string) => {
+    swal({
+      title: "are you sure?",
+      icon: "warning",
+      buttons: ["No", "YES"]
+    }).then((result) => {
+      if (result) {
+        setTodos(todos.filter((todo) => todo.id !== id));
+
+        swal({
+          title: "todo has been deleted successfully!",
+          icon: "success"
+        });
+      }
+    });
 
     return true;
   };
@@ -60,9 +58,9 @@ function TodosWrapper() {
       {todos.map((todo) => (
         <Todo
           key={todo.id}
-          todo={todo}
-          deleteTodo={deleteTodo}
           toggleComplete={toggleComplete}
+          deleteTodo={deleteTodo}
+          todo={todo}
         />
       ))}
     </div>
